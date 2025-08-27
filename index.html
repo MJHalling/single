@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Block Schedule | Single Period</title>
+<style>
+  body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #2b2b2b;
+    color: #e0e0e0;
+    animation: antiIdle 2m infinite;
+  }
+  @keyframes antiIdle {
+    0%, 100% { opacity: 1 }
+    50% { opacity: 0.999 }
+  }
+  h1 {
+    text-align: center;
+    margin: 24px 0 0;
+    font-size: 2em;
+    color: #e0e0e0;
+  }
+  #subtitle {
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 20px;
+    color: #aaa;
+  }
+  .schedule {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .block {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    transition: background-color 0.3s ease;
+  }
+  .num-col {
+    width: 60px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  .label-col {
+    flex: 1;
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+</head>
+<body>
+  <h1>Block Schedule | Single Period</h1>
+  <div id="subtitle"></div>
+  <div class="schedule" id="schedule"></div>
+
+<script>
+  const blocks = [
+    { num: "7", label: "7th Period", start: "8:10 AM", end: "9:50 AM", silk: "#006400", numText: "#FFF" }
+  ];
+
+  function getCurrentTimeInSeconds() {
+    const now = new Date();
+    return now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+  }
+
+  function timeToSeconds(timeStr) {
+    const [time, meridianRaw] = timeStr.split(" ");
+    const meridian = meridianRaw.toUpperCase();
